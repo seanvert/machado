@@ -1,4 +1,4 @@
-import NavBar from "./components/navbar";
+import NavBar from "../components/navbar";
 import Head from "next/head";
 import { api } from "~/utils/api";
 import { useForm, type SubmitHandler } from "react-hook-form"
@@ -47,7 +47,7 @@ export default function Home() {
       </Head>
       <main className="flex min-h-screen flex-grow flex-col items-center bg-gradient-to-b from-amber-300 to-slate-600">
       <NavBar />
-      <div className="flex-grow min-w-min">
+      <div className="flex-grow min-w-">
         <TextWizard />
         </div>
       </main>

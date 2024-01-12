@@ -5,7 +5,7 @@ import { api } from "~/utils/api";
 import { Inter as FontSans } from "next/font/google"
 import { cn } from "@/lib/utils"
 import "src/styles/globals.css"
-import { ThemeProvider } from 'src/pages/components/themeprovider'
+import { ThemeProvider } from '~/components/themeprovider'
 
 export const fontSans = FontSans({
   subsets: ["latin"],

@@ -1,5 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-import { ThemeProvider } from 'src/pages/components/themeprovider'
+import { ThemeProvider } from '~/components/themeprovider'
 export default function Document() {
     return (
         <Html lang="en">
