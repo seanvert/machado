@@ -1,7 +1,7 @@
-import { NavBar } from "./components/navbar";
+import NavBar from "./components/navbar";
 import Head from "next/head";
 import { api } from "~/utils/api";
-import { useForm, SubmitHandler } from "react-hook-form"
+import { useForm, type SubmitHandler } from "react-hook-form"
 
 import { Textarea } from "@/components/ui/textarea"
 
