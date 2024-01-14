@@ -3,14 +3,16 @@ import { SessionProvider } from "next-auth/react";
 import { type AppType } from "next/app";
 import { api } from "~/utils/api";
 import { Inter as FontSans } from "next/font/google"
+import { oswald } from 'src/utils/fonts'
 import { cn } from "@/lib/utils"
 import "src/styles/globals.css"
 import { ThemeProvider } from '~/components/themeprovider'
 
 export const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
+  subsets: ['latin'],
+  variable: '--font-sans',
 })
+
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
@@ -23,7 +25,8 @@ const MyApp: AppType<{ session: Session | null }> = ({
             disableTransitionOnChange>
       <div className={cn(
           "bg-background font-sans antialiased",
-          fontSans.variable
+          fontSans.variable,
+          oswald
         )}>
       <Component {...pageProps} />
       </div>

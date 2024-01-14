@@ -1,9 +1,8 @@
 import NavBar from "src/components/navbar";
 import Head from "next/head";
 import { api } from "~/utils/api";
-import { useForm, type SubmitHandler } from "react-hook-form"
-import { Textarea } from "@/components/ui/textarea"
 import Image from 'next/image'
+
 export default function Home() {
   const hello = api.post.hello.useQuery({ text: "from tRPC" });
 
@@ -18,13 +17,15 @@ export default function Home() {
       bg-gradient-radial from-black via-zinc-950 to-black
       flex min-h-screen flex-grow flex-col items-center ">
       <NavBar />
-      <h1 className="text-6xl p-4 font-serif text-center font-bold bg-gradient-to-br from-violet-800 via-orange-600 to-indigo-700 bg-clip-text text-transparent">machado</h1>
-    <Image 
+        
+    <Image
+          className="" 
           src="/Transparent_Machado_de_Assis.png"
-          width={500}
-          height={500}
+          width={350}
+          height={350}
           alt="Picture of the author"
     />
+    <h1 className="-mt-64 z-10 text-[330px] p-4 tracking-tighter font-oswald text-center font-bold bg-gradient-to-br from-violet-800 via-orange-600 to-indigo-700 bg-clip-text text-transparent">machado</h1>
       </main>
     </>
   );

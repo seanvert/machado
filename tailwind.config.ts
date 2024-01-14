@@ -24,7 +24,8 @@ const config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans],
+        sans: ['var(--font-sans)', ...fontFamily.sans],
+        oswald: ['var(--font-oswald)'],
       },
       colors: {
         border: "hsl(var(--border))",
