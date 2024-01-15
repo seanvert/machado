@@ -200,9 +200,7 @@ export default function Home() {
       </Head>
       <main className="flex min-h-screen flex-grow flex-col items-center bg-gradient-to-b from-amber-300 to-slate-600">
       <NavBar />
-      <div className="flex-grow min-w-">
         <Component />
-        </div>
       </main>
     </>
   );

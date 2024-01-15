@@ -22,7 +22,7 @@ import { api } from "~/utils/api";
 const NavBar = () => {
   const { data: sessionData } = useSession();
   return (
-    <NavigationMenu className="">
+    <NavigationMenu className="z-50">
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
