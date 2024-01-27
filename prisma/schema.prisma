@@ -15,28 +15,33 @@ datasource db {
     relationMode = "prisma"
 }
 
-model Authors {
+model Author {
     id        Int      @id @default(autoincrement())
     name String
     wikipediaLink String
     portrait Bytes
+    works Work[]
+    quotes Quote[]
 }
 
-model Works {
+model Work {
     id        Int      @id @default(autoincrement())
     name String
     bookStoreLinkStore String
+    author Author @relation(fields: [authorId], references: [id])
+    authorId Int
+    quotes Quote[]
 }
 
-model Quotes {
+model Quote {
     id        Int      @id @default(autoincrement())
     createdBy   Author   @relation(fields: [createdById], references: [id])
-    createdById String
+    createdById Int
     book Work @relation(fields: [workId], references: [id])
-    workId String
+    workId Int
 }
 
-model Exercises {
+model Exercise {
     id        Int      @id @default(autoincrement())
     name String
     contents String
@@ -95,7 +100,7 @@ model User {
     accounts      Account[]
     sessions      Session[]
     posts         Post[]
-    exercises     Exercises[]
+    exercises     Exercise[]
 }
 
 model VerificationToken {
