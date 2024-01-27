@@ -15,6 +15,38 @@ datasource db {
     relationMode = "prisma"
 }
 
+model Authors {
+    id        Int      @id @default(autoincrement())
+    name String
+    wikipediaLink String
+    portrait Bytes
+}
+
+model Works {
+    id        Int      @id @default(autoincrement())
+    name String
+    bookStoreLinkStore String
+}
+
+model Quotes {
+    id        Int      @id @default(autoincrement())
+    createdBy   Author   @relation(fields: [createdById], references: [id])
+    createdById String
+    book Work @relation(fields: [workId], references: [id])
+    workId String
+}
+
+model Exercises {
+    id        Int      @id @default(autoincrement())
+    name String
+    contents String
+    configs String
+    type Int?
+    progress String
+    createdBy   User   @relation(fields: [createdById], references: [id])
+    createdById String
+}
+
 model Post {
     id        Int      @id @default(autoincrement())
     name      String
@@ -63,6 +95,7 @@ model User {
     accounts      Account[]
     sessions      Session[]
     posts         Post[]
+    exercises     Exercises[]
 }
 
 model VerificationToken {
