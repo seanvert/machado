@@ -3,7 +3,6 @@ import Head from "next/head";
 import { api } from "~/utils/api";
 
 export default function Home() {
-    const { data, isLoading } = api.post.getAllByUser.useQuery();
   return (
     <>
       <Head>
@@ -13,10 +12,7 @@ export default function Home() {
       </Head>
       <main className="flex min-h-screen flex-grow flex-col items-center bg-gradient-to-b from-amber-600 to-slate-800">
       <NavBar />
-      { isLoading ? 
-          "carregando..." : 
-          data?.map((post) => { return <> <br/> {post.name} </>}) 
-      }
+      este site foi inspirado no livro Redação: escrever é desvendar o mundo
         <h1>intro</h1>
       </main>
     </>
