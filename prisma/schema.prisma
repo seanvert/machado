@@ -27,7 +27,8 @@ model Author {
 model Work {
     id        Int      @id @default(autoincrement())
     name String
-    bookStoreLinkStore String
+    bookStoreLink String
+    authorName String
     author Author @relation(fields: [authorId], references: [id])
     authorId Int
     quotes Quote[]
@@ -35,6 +36,7 @@ model Work {
 
 model Quote {
     id        Int      @id @default(autoincrement())
+    content String
     createdBy   Author   @relation(fields: [createdById], references: [id])
     createdById Int
     book Work @relation(fields: [workId], references: [id])
