@@ -204,7 +204,7 @@ function UndoIcon(props: React.HTMLAttributes<SVGSVGElement>) {
 }
 
 export default function Home() {
-  const { data, isLoading } = api.exercise.freeWriting.useQuery();
+  const { data, isLoading } = api.exercise.getAll.useQuery();
   return (
     <>
       <Head>
@@ -214,7 +214,9 @@ export default function Home() {
       </Head>
       <main className="flex min-h-screen flex-grow flex-col items-center bg-gradient-to-b from-amber-300 to-slate-600">
         <NavBar />
-        { isLoading ? "carregando..." : data }
+        { isLoading ? "carregando..." : data?.map((exercise) => {
+          return exercise.name
+        }) }
         <Component />
       </main>
     </>

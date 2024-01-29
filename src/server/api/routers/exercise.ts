@@ -7,21 +7,6 @@ import {
 } from "~/server/api/trpc";
 
 export const exerciseRouter = createTRPCRouter({
-  freeWriting: publicProcedure
-  .query(({ ctx }) => {
-    // TODO n fazer
-    return "Escrita Livre"
-  }),
-
-  initializeAllStartingWithLetter: protectedProcedure
-  .query(({ ctx }) => {
-    // TODO n fazxer
-    // ver se tem dados do usuário deste tipo de exercício
-    // se tiver fazer a lógica para adivinhar a próxima letra
-    // se não tem, inicializar os dados
-    return 1
-  }),
-
   getById: publicProcedure
     .input(z.object({
       id: z.number()
