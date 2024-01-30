@@ -1,6 +1,3 @@
-import NavBar from "src/components/navbar";
-import Head from "next/head";
-import { api } from "~/utils/api";
 import { PageLayout } from "~/components/layout";
 export default function Home() {
   return (

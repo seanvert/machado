@@ -12,7 +12,6 @@ type Inputs = {
  */
 import { Button } from "@/components/ui/button"
 import { DropdownMenuTrigger, DropdownMenuItem, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu"
-import { SVGProps } from "react";
 
 export function Component() {
   const { mutate, isLoading } = api.post.create.useMutation()

@@ -1,11 +1,9 @@
 import type { GetServerSideProps, NextPage } from "next";
-import Head from "next/head";
 import { api } from "~/utils/api";
 import Image from "next/image";
-import NavBar from "src/components/navbar";
 import { PageLayout } from "~/components/layout";
 const ProfilePage: NextPage<{ username: string }> = ({ username }) => {
-  const { data, isLoading } = api.profile.getUserByUsername.useQuery({ username: username })
+  const { data } = api.profile.getUserByUsername.useQuery({ username: username })
   if (!data) return <div>404</div>
 
   return (
@@ -50,8 +48,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         transformer: superjson,
     });
   
-  const slug = context.params?.slug;
-
   const username = session?.user.name
     
   return {

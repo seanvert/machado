@@ -16,8 +16,6 @@ import {
 } from "@/components/ui/navigation-menu"
 import { ModeToggle } from "@/components/ui/darkmodetoggle"
 import { signIn, signOut, useSession } from "next-auth/react";
-import { api } from "~/utils/api";
-
 
 const NavBar = () => {
   const { data: sessionData } = useSession();
