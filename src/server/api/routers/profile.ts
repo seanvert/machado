@@ -1,8 +1,7 @@
 import { createTRPCRouter, publicProcedure, } from "~/server/api/trpc";
 import { z } from 'zod';
 import { TRPCError } from "@trpc/server";
-// TODO
-// import { filterUserForClient } from "~/server/helpers/filterUserForClient";
+import { filterUserForClient } from "~/server/helpers/filterUserForClient";
 
 export const profileRouter = createTRPCRouter({
     getUserByUsername: publicProcedure.input(z.object({
@@ -20,7 +19,6 @@ export const profileRouter = createTRPCRouter({
                 message: "User not found",
             })
         }
-        // TODO filterUserForClient removing emails from it
-        return user
+        return filterUserForClient(user)
     })
 });
