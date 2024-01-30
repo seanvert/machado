@@ -1,5 +1,3 @@
-import NavBar from "src/components/navbar";
-import { api } from "~/utils/api";
 import Image from 'next/image'
 import { PageLayout } from "~/components/layout";
 export default function Home() {

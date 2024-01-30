@@ -3,17 +3,13 @@ import Head from "next/head";
 import { api } from "~/utils/api";
 import Image from "next/image";
 import NavBar from "src/components/navbar";
-
+import { PageLayout } from "~/components/layout";
 const ProfilePage: NextPage<{ username: string }> = ({ username }) => {
   const { data, isLoading } = api.profile.getUserByUsername.useQuery({ username: username })
   if (!data) return <div>404</div>
 
   return (
-    <>
-      <Head>
-        <title>Perfil de {data.name}</title>
-      </Head>
-      <NavBar />
+    <PageLayout>
         <div className="relative h-48 border-slate-300 bg-slate-600 flex-col">
             { data.image ? 
             <Image
@@ -31,7 +27,7 @@ const ProfilePage: NextPage<{ username: string }> = ({ username }) => {
           {`${data.name}`}
           </div>
     <div className="border-b border-slate-400 w-full"></div>
-    </>
+    </PageLayout>
   );
 }
 

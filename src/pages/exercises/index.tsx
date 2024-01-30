@@ -1,9 +1,7 @@
-import NavBar from "src/components/navbar";
-import Head from "next/head";
 import { api } from "~/utils/api";
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { Textarea } from "@/components/ui/textarea"
-
+import { PageLayout } from "~/components/layout";
 type Inputs = {
   textAreaID: string
 }
@@ -206,20 +204,13 @@ function UndoIcon(props: React.HTMLAttributes<SVGSVGElement>) {
 export default function Home() {
   const { data, isLoading } = api.exercise.getAll.useQuery();
   return (
-    <>
-      <Head>
-        <title>Machado</title>
-        <meta name="assis" content="escrita criativa" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className="flex min-h-screen flex-grow flex-col items-center bg-gradient-to-b from-amber-300 to-slate-600">
-        <NavBar />
+
+        <PageLayout>
         { isLoading ? "carregando..." : data?.map((exercise) => {
           return exercise.name
         }) }
         <Component />
-      </main>
-    </>
+        </PageLayout>
   );
 }
 
