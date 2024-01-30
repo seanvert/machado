@@ -66,9 +66,11 @@ const NavBar = () => {
 
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <Link href="/${sessionData.user?.name}" legacyBehavior passHref>
-        {sessionData ? <span>Logged in as {sessionData.user?.name}</span> : ""}
-        </Link>
+        {sessionData ? 
+        <Link href={"/" + sessionData?.user?.name} legacyBehavior passHref>
+        <span>Logged in as {sessionData.user?.name}</span>
+        </Link> :
+        ""}
         <ModeToggle />
         <NavigationMenuItem onClick={sessionData ? () => void signOut() : () => void signIn()}>
           <Link href="" legacyBehavior passHref>
