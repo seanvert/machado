@@ -1,7 +1,8 @@
 import { api } from "~/utils/api";
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { Textarea } from "@/components/ui/textarea"
-import { PageLayout } from "~/components/layout";
+import { PageLayout } from "~/components/layout"
+import { cn } from "@/lib/utils"
 type Inputs = {
   textAreaID: string
 }
@@ -40,7 +41,7 @@ export function Component() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex flex-col h-full max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+      <div className={cn("flex flex-col h-full max-w-3xl mx-auto rounded-lg shadow-lg overflow-hidden")}>
         <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
           <div className="flex gap-2">
             <Button size="icon" variant="ghost">
@@ -85,7 +86,7 @@ export function Component() {
           </div>
         </div>
         <Textarea
-          className="flex-1 p-6 resize-none text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-b-lg"
+          className="flex-1 p-6 resize-none outline-none rounded-b-lg"
           {...register("textAreaID", { required: true })}
           id="writing-area"
           placeholder="Start writing here..."
