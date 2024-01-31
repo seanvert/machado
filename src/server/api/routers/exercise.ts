@@ -9,12 +9,12 @@ import {
 export const exerciseRouter = createTRPCRouter({
   getById: publicProcedure
     .input(z.object({
-      id: z.number()
+      exerciseId: z.number()
     }))
     .query(({ ctx, input }) => {
       return ctx.db.exercise.findUniqueOrThrow({
         where: {
-          id: input.id
+          id: input.exerciseId
         }
       })
     }),
