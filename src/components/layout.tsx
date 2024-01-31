@@ -4,7 +4,7 @@ import Head from "next/head";
 import NavBar from "./navbar"
 import { Footer } from "./footer"
 import { cn } from "@/lib/utils"
-// bg-gradient-radial from-black via-zinc-950 to-black
+
 export const PageLayout = ({children} : {children: ReactNode}) => {
     return (
         <>

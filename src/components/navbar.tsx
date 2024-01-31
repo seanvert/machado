@@ -73,7 +73,7 @@ const NavBar = () => {
         ""}
         <ModeToggle />
         <NavigationMenuItem onClick={sessionData ? () => void signOut() : () => void signIn()}>
-          <Link href="" legacyBehavior passHref>
+          <Link href="/" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               {sessionData ? "Sign out" : "Sign in"}
             </NavigationMenuLink>
