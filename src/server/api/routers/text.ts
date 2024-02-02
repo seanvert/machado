@@ -18,8 +18,8 @@ export const textRouter = createTRPCRouter({
         data: {
           name: input.name,
           contents: input.contents,
-          exerciseId: input.exerciseId,
-          createdById: ctx.session.user.id,
+          exercise: { connect: { id: input.exerciseId } },
+          createdBy: { connect: { id: ctx.session.user.id } },
         },
       });
     }),
