@@ -1,4 +1,4 @@
-// not found next js page
+
 export const NotFound = () => {
     return (
         <div>
