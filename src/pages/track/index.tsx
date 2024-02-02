@@ -3,7 +3,7 @@ import { PageLayout } from "~/components/layout";
 import React from "react";
 import type { RouterOutputs } from "~/utils/api";
 import Link from "next/link"
-import { LoadingPage } from "~/components/loading";}
+import { LoadingPage } from "~/components/loading";
 
 type Exercise = RouterOutputs["exercise"]["getAll"][number];
 const ExerciseCard = (props: Exercise) => {

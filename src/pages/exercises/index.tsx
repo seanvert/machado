@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button"
 import { DropdownMenuTrigger, DropdownMenuItem, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu"
 
 export function Component() {
-  const { mutate, isLoading } = api.post.create.useMutation()
+  const { mutate, isLoading } = api.text.create.useMutation()
   const {
     register,
     handleSubmit,
@@ -25,7 +25,9 @@ export function Component() {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     mutate({
-      name: data.textAreaID
+      name: "test",
+      contents: data.textAreaID,
+      exerciseId: 1,
     })
   }
 
