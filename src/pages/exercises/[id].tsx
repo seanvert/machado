@@ -30,7 +30,6 @@ import { db } from '~/server/db';
 import superjson from 'superjson';
 import { authOptions } from "~/server/auth";
 import { getServerSession } from "next-auth";
-import { request } from "http";
 
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
