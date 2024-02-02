@@ -2,10 +2,12 @@ import type { GetServerSideProps, NextPage } from "next";
 import { api } from "~/utils/api";
 import Image from "next/image";
 import { PageLayout } from "~/components/layout";
-const ProfilePage: NextPage<{ username: string }> = ({ username }) => {
-  const { data } = api.profile.getUserByUsername.useQuery({ username: username })
-  if (!data) return <div>404</div>
+import { LoadingPage } from "~/components/loading";
 
+const ProfilePage: NextPage<{ username: string }> = ({ username }) => {
+  const { data, isLoading } = api.profile.getUserByUsername.useQuery({ username: username })
+  if (!data) return <div>404</div>
+  if (isLoading) return <LoadingPage />
   return (
     <PageLayout>
         <div className="relative h-48 border-slate-300 bg-slate-600 flex-col">

@@ -3,6 +3,7 @@ import { PageLayout } from "~/components/layout";
 import React from "react";
 import type { RouterOutputs } from "~/utils/api";
 import Link from "next/link"
+import { LoadingPage } from "~/components/loading";}
 
 type Exercise = RouterOutputs["exercise"]["getAll"][number];
 const ExerciseCard = (props: Exercise) => {
@@ -17,12 +18,11 @@ const ExerciseCard = (props: Exercise) => {
   )
 }
 
-// TODO lazy loading on those exercises
 export default function Home() {
   const { data, isLoading } = api.exercise.getAll.useQuery();
   return (
     <PageLayout>
-      {isLoading ? "carregando..." :
+      {isLoading ? <LoadingPage /> :
         data?.map((exercise) => {
           return <ExerciseCard key={exercise.id} {...exercise} />
         })}

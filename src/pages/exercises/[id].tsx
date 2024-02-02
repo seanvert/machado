@@ -1,12 +1,12 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { api } from "~/utils/api";
 import { PageLayout } from "~/components/layout";
+import { LoadingPage } from "~/components/loading";
 
 const ExercisePage: NextPage<{ id: number }> = ({ id }) => {
     const { data, isLoading } = api.exercise.getById.useQuery({ exerciseId: id })
     if (!data) return <div>404</div>
-    // TODO loading page
-    if (isLoading) return <div>carregando</div>
+    if (isLoading) return <LoadingPage />
     return (
         <PageLayout>
             <div className="relative h-48 border-slate-300 bg-slate-600 flex-col">

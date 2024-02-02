@@ -47,6 +47,12 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   },
+    theme: {
+      colorScheme: "dark", // "auto" | "dark" | "light"
+      brandColor: "", // Hex color code
+      logo: "", // Absolute URL to image
+      buttonText: "" // Hex color code
+    },
   adapter: PrismaAdapter(db),
   providers: [
     DiscordProvider({

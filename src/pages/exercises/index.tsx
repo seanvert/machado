@@ -202,13 +202,8 @@ function UndoIcon(props: React.HTMLAttributes<SVGSVGElement>) {
 }
 
 export default function Home() {
-  const { data, isLoading } = api.exercise.getAll.useQuery();
   return (
-
         <PageLayout>
-        { isLoading ? "carregando..." : data?.map((exercise) => {
-          return exercise.name
-        }) }
         <Component />
         </PageLayout>
   );

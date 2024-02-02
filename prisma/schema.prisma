@@ -52,6 +52,7 @@ model Exercise {
     progress String
     createdBy   User   @relation(fields: [createdById], references: [id])
     createdById String
+    texts Text[]
 }
 
 model Post {
@@ -60,6 +61,20 @@ model Post {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
+    createdBy   User   @relation(fields: [createdById], references: [id])
+    createdById String
+
+    @@index([name])
+}
+
+model Text {
+    id        Int      @id @default(autoincrement())
+    name      String
+    contents  String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    exercise Exercise @relation(fields: [exerciseId], references: [id])
+    exerciseId Int
     createdBy   User   @relation(fields: [createdById], references: [id])
     createdById String
 
@@ -103,6 +118,7 @@ model User {
     sessions      Session[]
     posts         Post[]
     exercises     Exercise[]
+    texts         Text[]
 }
 
 model VerificationToken {
