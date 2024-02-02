@@ -6,8 +6,8 @@ import { LoadingPage } from "~/components/loading";
 import { NotFound } from "~/components/notfound";
 const ProfilePage: NextPage<{ username: string }> = ({ username }) => {
   const { data, isLoading } = api.profile.getUserByUsername.useQuery({ username: username })
-  if (!data) return <NotFound />
   if (isLoading) return <LoadingPage />
+  if (!data) return <NotFound />
   return (
     <PageLayout>
         <div className="relative h-48 border-slate-300 bg-slate-600 flex-col">
@@ -49,8 +49,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         },
         transformer: superjson,
     });
-  
-  const username = session?.user.name
+  const username = context.params?.slug
     
   return {
     props: {
