@@ -19,7 +19,7 @@ model Author {
     id        Int      @id @default(autoincrement())
     name String
     wikipediaLink String
-    portrait Bytes
+    portrait Bytes?
     works Work[]
     quotes Quote[]
 }
@@ -41,9 +41,10 @@ model Quote {
     createdBy   Author   @relation(fields: [createdById], references: [id])
     createdById Int
     book Work @relation(fields: [workId], references: [id])
+    workId Int
+
     @@index([createdById])
     @@index([workId])
-    workId Int
 }
 
 model Exercise {
