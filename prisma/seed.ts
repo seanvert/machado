@@ -1,4 +1,6 @@
 import { PrismaClient } from '@prisma/client'
+import { faker } from '@faker-js/faker'
+
 const prisma = new PrismaClient()
 async function main() {
     const alice = await prisma.user.upsert({
@@ -22,40 +24,62 @@ async function main() {
             }
         },
     })
-    const post = await prisma.post.upsert({
-        where: { id: 1 },
-        update: {},
-        create: {
-            name: 'My first post',
-            createdBy: {
-                connect: { id: alice.id },
+    for (let i = 0; i < 10; i++) {
+        // create user from faker name and email
+        const fakerEmail = faker.internet.email()
+        const fakerName = faker.person.fullName()
+        const user = await prisma.user.upsert({
+            where: { email: fakerEmail },
+            update: {},
+            create: {
+                email: fakerEmail,
+                name: fakerName,
+                posts: {
+                    create: [
+                        {
+                            name: 'test' + i,
+                        },
+                        {
+                            name: fakerName
+                        },
+                        {
+                            name: fakerEmail
+                        }
+                    ],
+                }
             },
-        },
-    })
-    const exercise = await prisma.exercise.upsert({
-        where: { id: 1 },
-        update: {},
-        create: {
-            name: 'test',
-            contents: 'test',
-            configs: 'test',
-            progress: 'test',
-            type: 1,
-            createdBy: {
-                connect: { id: alice.id },
+        })
+
+        // create exercises with new users
+        const exercise = await prisma.exercise.upsert({
+            where: { id: i + 1 },
+            update: {},
+            create: {
+                name: 'exercise' + fakerName,
+                contents: 'test',
+                configs: 'test',
+                progress: 'test',
+                type: i,
+                createdBy: {
+                    connect: { id: user.id },
+                },
             },
-        },
-    })
-    const text = await prisma.text.upsert({
-        where: { id: 1 },
-        update: {},
-        create: {
-            name: 'test',
-            contents: 'test',
-            exercise: { connect: { id: exercise.id } },
-            createdBy: { connect: { id: alice.id } },
-        },
-    })
+        })
+
+        // create texts
+        const text = await prisma.text.upsert({
+            where: { id: i },
+            update: {},
+            create: {
+                name: 'test' + fakerName,
+                contents: 'test' + fakerEmail,
+                exercise: { connect: { id: exercise.id } },
+                createdBy: { connect: { id: user.id } },
+            },
+        })
+    }
+
+
     const machado = await prisma.author.upsert({
         where: { id: 1 },
         update: {},
@@ -107,7 +131,7 @@ async function main() {
         },
     })
 
-    console.log({ alice, bob, post, quote, exercise, text })
+    console.log({ alice, bob })
 }
 
 
