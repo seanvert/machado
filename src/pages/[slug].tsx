@@ -4,6 +4,7 @@ import Image from "next/image";
 import { PageLayout } from "~/components/layout";
 import { LoadingPage } from "~/components/loading";
 import { NotFound } from "~/components/notfound";
+
 const ProfilePage: NextPage<{ username: string }> = ({ username }) => {
   const { data, isLoading } = api.profile.getUserByUsername.useQuery({ username: username })
   if (isLoading) return <LoadingPage />
