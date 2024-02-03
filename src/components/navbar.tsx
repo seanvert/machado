@@ -48,6 +48,9 @@ const NavBar = () => {
               <ListItem href="/exercises" title="Exercícios">
                 Comece a praticar agora mesmo!
               </ListItem>
+              <ListItem href="/texts" title="Textos">
+                lista de textos
+              </ListItem>
               <ListItem href="/track" title="Progresso">
                 O seu progresso no curso
               </ListItem>

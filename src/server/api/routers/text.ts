@@ -3,6 +3,7 @@ import { z } from "zod";
 import {
   createTRPCRouter,
   protectedProcedure,
+  publicProcedure
 } from "~/server/api/trpc";
 
 export const textRouter = createTRPCRouter({
@@ -24,13 +25,30 @@ export const textRouter = createTRPCRouter({
       });
     }),
 
+    getById: protectedProcedure
+    .input(z.object({
+      textId: z.number()
+    }))
+    .query(({ ctx, input }) => {
+      return ctx.db.text.findUniqueOrThrow({
+        where: {
+          id: input.textId
+        }
+      })
+    }),
+
   getLatest: protectedProcedure.query(({ ctx }) => {
     return ctx.db.text.findFirst({
       orderBy: { createdAt: "desc" },
       where: { createdBy: { id: ctx.session.user.id } },
     });
   }),
-
+  getAll: publicProcedure.query(({ ctx }) => {
+    return ctx.db.text.findMany({
+      orderBy: { createdAt: "desc" },
+      take: 10,
+    });
+  }),
   getAllByUser: protectedProcedure.query(({ ctx }) => {
     return ctx.db.text.findMany({
       orderBy: { createdAt: "desc" },
