@@ -50,7 +50,7 @@ model Quote {
 model Exercise {
     id        Int      @id @default(autoincrement())
     name String
-    contents String
+    contents String 	@db.VarChar(4000)
     configs String
     type Int?
     progress String
@@ -75,7 +75,7 @@ model Post {
 model Text {
     id        Int      @id @default(autoincrement())
     name      String
-    contents  String
+    contents  String @db.VarChar(3000)
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     exercise Exercise @relation(fields: [exerciseId], references: [id])
