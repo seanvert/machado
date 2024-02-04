@@ -10,10 +10,10 @@ const ExercisePage: NextPage<{ id: number }> = ({ id }) => {
     return (
         <PageLayout>
             <div className="relative h-48 border-slate-300 bg-slate-600 flex-col">
-                {data.name} 
-            {data.contents}
-            {data.configs}
-            {data.progress}
+                <h1>{data.name}</h1>                
+                <div>{data.contents.split('\n').map(line => {
+                    return <p key={line}>{line}</p>
+                })}</div>
             </div>
             <div className="h-[64px]"></div>
             <div className="p-4 text-2xl font-bold">
