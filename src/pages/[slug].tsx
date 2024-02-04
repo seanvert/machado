@@ -3,12 +3,12 @@ import { api } from "~/utils/api";
 import Image from "next/image";
 import { PageLayout } from "~/components/layout";
 import { LoadingPage } from "~/components/loading";
-import { NotFound } from "~/components/notfound";
+import { Custom404 } from "~/pages/404";
 
 const ProfilePage: NextPage<{ username: string }> = ({ username }) => {
   const { data, isLoading } = api.profile.getUserByUsername.useQuery({ username: username })
   if (isLoading) return <LoadingPage />
-  if (!data) return <NotFound />
+  if (!data) return <Custom404 />
   return (
     <PageLayout>
         <div className="relative h-48 border-slate-300 bg-slate-600 flex-col">

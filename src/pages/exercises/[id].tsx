@@ -2,10 +2,10 @@ import type { GetServerSideProps, NextPage } from "next";
 import { api } from "~/utils/api";
 import { PageLayout } from "~/components/layout";
 import { LoadingPage } from "~/components/loading";
-import { NotFound } from "~/components/notfound";
+import { Custom404 } from "~/pages/404";
 const ExercisePage: NextPage<{ id: number }> = ({ id }) => {
     const { data, isLoading } = api.exercise.getById.useQuery({ exerciseId: id })
-    if (!data) return <NotFound />
+    if (!data) return <Custom404 />
     if (isLoading) return <LoadingPage />
     return (
         <PageLayout>
