@@ -63,12 +63,6 @@ const NavBar = () => {
         </NavigationMenuList>
         <div className="flex-grow"></div>
         <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Login</NavigationMenuTrigger>
-          <NavigationMenuContent>
-
-          </NavigationMenuContent>
-        </NavigationMenuItem>
         {sessionData ? 
         <Link href={"/" + sessionData?.user?.name} legacyBehavior passHref>
         <span>Logged in as {sessionData.user?.name}</span>
