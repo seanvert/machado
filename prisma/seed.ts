@@ -2,7 +2,19 @@ import { PrismaClient } from '@prisma/client'
 import { faker } from '@faker-js/faker'
 
 const prisma = new PrismaClient()
+
+async function cleanDb() {
+    await prisma.post.deleteMany({})
+    await prisma.text.deleteMany({})
+    await prisma.exercise.deleteMany({})
+    await prisma.quote.deleteMany({})
+    return prisma.work.deleteMany({})
+    await prisma.author.deleteMany({})   
+    
+}
+
 async function main() {
+    await cleanDb()
     const alice = await prisma.user.upsert({
         where: { email: 'alice@prisma.io' },
         update: {},
@@ -24,6 +36,7 @@ async function main() {
             }
         },
     })
+
     for (let i = 0; i < 10; i++) {
         // create user from faker name and email
         const fakerEmail = faker.internet.email()
@@ -64,6 +77,29 @@ async function main() {
                 Trust in the inexhaustible nature of the murmur.\n
                 If silence threatens, due to a \“lack of inattention,\” write any letter, returning to a state of arbitrariness.\n
                 André Bretón defined automatic writing as a way of creating art through pure spontaneous thought, \“free from aesthetic or moral preoccupations.\” This appealed to many freethinkers of the time. He was as charismatic as he was enigmatic, and his following grew.\n`,
+                configs: '{ configs: teste}',
+                progress: '{ progress: { automaticWriting: 100}}',
+                type: i,
+                createdBy: {
+                    connect: { id: user.id },
+                },
+            },
+        })
+        const escritaAutomatica = await prisma.exercise.upsert({
+            where: { id: i + 60 },
+            update: {},
+            create: {
+                name: 'Escrita Automática',
+                contents: `A partir de seu famoso tratado, O Manifesto Surrealista, Breton descreve sua técnica específica para escrita automática:
+                Encontre um lugar tão propício quanto possível para a concentração do espírito.\n
+                Entre no estado mais passivo ou receptivo da mente possível.\n
+                Dispense quaisquer preocupações com o gênio ou talento dos outros.\n
+                Repita que a literatura é uma das estradas mais tristes que levam a todos os lugares.\n
+                Escreva rapidamente, sem um tópico preconcebido, incapaz de parar ou ser tentado a ler o que está escrito.\n
+                Deixe a primeira frase que vem à mente permanecer e continue assim.\n
+                Confie na natureza inexaurível do murmúrio.\n
+                Se o silêncio ameaçar, devido a uma \"falta de atenção\", escreva qualquer letra, retornando a um estado de arbitrariedade.\n
+                André Bretón definiu a escrita automática como uma forma de criar arte por meio do pensamento espontâneo puro, \"livre de preocupações estéticas ou morais\". Isso atraiu muitos livres-pensadores da época. Ele era tão carismático quanto enigmático, e seu séquito cresceu.\n`,
                 configs: '{ configs: teste}',
                 progress: '{ progress: { automaticWriting: 100}}',
                 type: i,
