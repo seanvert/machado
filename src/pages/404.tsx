@@ -2,7 +2,7 @@
 // TODO insert logo 
 // 
 
-export const Custom404 = () => {
+export const Custom404 : React.FC = () => {
     return (
         <div className="h-screen w-screen bg-gray-100 flex items-center">
             <div className="container flex flex-col md:flex-row items-center justify-center px-5 text-gray-700">
