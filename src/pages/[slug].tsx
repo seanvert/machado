@@ -3,7 +3,7 @@ import { api } from "~/utils/api";
 import Image from "next/image";
 import { PageLayout } from "~/components/layout";
 import { LoadingPage } from "~/components/loading";
-import { Custom404 } from "~/pages/404";
+import Custom404 from "~/pages/404";
 
 const ProfilePage: NextPage<{ username: string }> = ({ username }) => {
   const { data, isLoading } = api.profile.getUserByUsername.useQuery({ username: username })

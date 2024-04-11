@@ -2,7 +2,7 @@ import type { GetServerSideProps, NextPage } from "next";
 import { api } from "~/utils/api";
 import { PageLayout } from "~/components/layout";
 import { LoadingPage } from "~/components/loading";
-import { Custom404 } from "~/pages/404";
+import Custom404 from "~/pages/404";
 
 const TextPage: NextPage<{ id: number }> = ({ id }) => {
     const { data, isLoading } = api.text.getById.useQuery({ textId: id })

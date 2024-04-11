@@ -1,8 +1,7 @@
 // not found next js page
 // TODO insert logo 
 // 
-
-export const Custom404 : React.FC = () => {
+const Custom404 : React.FC = () => {
     return (
         <div className="h-screen w-screen bg-gray-100 flex items-center">
             <div className="container flex flex-col md:flex-row items-center justify-center px-5 text-gray-700">
@@ -72,3 +71,5 @@ export const Custom404 : React.FC = () => {
         </div>
     )
 }
+
+export default Custom404;
