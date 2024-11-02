@@ -15,27 +15,7 @@ async function cleanDb() {
 
 async function main() {
     await cleanDb()
-    const alice = await prisma.user.upsert({
-        where: { email: 'alice@prisma.io' },
-        update: {},
-        create: {
-            email: 'alice@prisma.io',
-            name: 'Alice',
-            posts: {
-                create: {
-                    name: 'Check out Prisma with Next.js',
-                },
-            },
-            texts: {
-                create: {
-                    name: 'test',
-                    contents: 'test',
-                    exercise: {}
-                },
 
-            }
-        },
-    })
 
     for (let i = 0; i < 10; i++) {
         // create user from faker name and email
@@ -186,6 +166,28 @@ async function main() {
                     },
                 ],
             },
+        },
+    })
+
+    const alice = await prisma.user.upsert({
+        where: { email: 'alice@prisma.io' },
+        update: {},
+        create: {
+            email: 'alice@prisma.io',
+            name: 'Alice',
+            posts: {
+                create: {
+                    name: 'Check out Prisma with Next.js',
+                },
+            },
+            texts: {
+                create: {
+                    name: 'test',
+                    contents: 'test',
+                    exerciseId: 1
+                },
+
+            }
         },
     })
 
