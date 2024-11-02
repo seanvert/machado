@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "next build",
+    "vercel-build": "yarn db:seed && yarn build",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
     "db:seed": "prisma db seed",
