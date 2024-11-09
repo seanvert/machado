@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button"
 import { DropdownMenuTrigger, DropdownMenuItem, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu"
 import { UndoIcon, ItalicIcon, BoldIcon, RedoIcon, UnderlineIcon } from "~/components/icon";
 
-export function Component() {
+export const Component: React.FC<{exerciseId : number}> = ({exerciseId}) => {
   const { mutate, isLoading } = api.text.create.useMutation()
   const {
     register,
@@ -26,9 +26,10 @@ export function Component() {
     mutate({
       name: "test",
       contents: data.textAreaID,
-      exerciseId: 1,
+      exerciseId: exerciseId,
     })
-  }
+    window.location.replace("/")
+  } 
 
   const freeWriting = () => {
     console.log("free writing")
@@ -44,29 +45,18 @@ export function Component() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={cn("flex flex-col h-full max-w-3xl mx-auto rounded-lg shadow-lg overflow-hidden")}>
         <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-          <div className="flex gap-2">
-            <Button size="icon" variant="ghost">
-              <BoldIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-            </Button>
-            <Button size="icon" variant="ghost">
-              <ItalicIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-            </Button>
-            <Button size="icon" variant="ghost">
-              <UnderlineIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-            </Button>
-          </div>
           <div className="flex items-center gap-4">
-            <span className="text-sm text-gray-500 dark:text-gray-400">Word count: {watch("textAreaID") ? watch("textAreaID")?.split(" ").length - 1 : 0}</span>
+            <span className="text-sm text-gray-500 dark:text-gray-400">Contagem: {watch("textAreaID") ? watch("textAreaID")?.split(" ").length - 1 : 0}</span>
             <Button size="icon" variant="ghost">
               <UndoIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-            </Button>
+            </Button> 
             <Button size="icon" variant="ghost">
               <RedoIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
             </Button>
             <Button
               disabled={isLoading} type="submit"
               className="text-gray-500 dark:text-gray-400 border-gray-500 dark:border-gray-400" variant="outline">
-              Save
+              Enviar
             </Button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -74,7 +64,7 @@ export function Component() {
                   className="text-gray-500 dark:text-gray-400 border-gray-500 dark:border-gray-400"
                   variant="outline"
                 >
-                  Exercise Type
+                  Tipo
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
@@ -90,7 +80,7 @@ export function Component() {
           className="flex-1 p-6 resize-none outline-none rounded-b-lg"
           {...register("textAreaID", { required: true })}
           id="writing-area"
-          placeholder="Start writing here..."
+          placeholder="Escreva aqui..."
         />
       </div>
     </form>
@@ -115,7 +105,7 @@ const ExercisePage: NextPage<{ id: number }> = ({ id }) => {
                 </div>
                 <div className="w-1/3"></div>
             </div>
-            <Component />
+            <Component exerciseId={id} />
         </PageLayout>
     );
 }
@@ -145,9 +135,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     if (!id) {
         id = 0
     }
-    await helpers.exercise.getById.fetch({
+    const exercise = await helpers.exercise.getById.fetch({
         exerciseId: id
     })
+    if (!exercise)
+      console.log("TODO 404")
+    console.log(exercise)
     const username = session?.user.name
 
     return {
