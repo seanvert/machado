@@ -3,7 +3,6 @@
  * for Docker builds.
  */
 await import("./src/env.js");
-
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
@@ -12,6 +11,11 @@ const config = {
       {
         protocol: 'https',
         hostname: 'lh3.googleusercontent.com',
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.discordapp.com',
         port: '',
       }
     ]

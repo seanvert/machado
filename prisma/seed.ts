@@ -65,6 +65,22 @@ async function main() {
                 },
             },
         })
+
+        const associacaoLivre = await prisma.exercise.upsert({
+            where: { id: i + 80},
+            update: {},
+            create: {
+                name: 'Associação Livre',
+                contents: `Escreva a primeira palavra que vier à cabeça quando ler as palavras. Não se preocupe com qualquer \n
+                tipo de relação lógica ou de sentido.`,
+                configs: '{ configs: teste}',
+                progress: '{ progress: { automaticWriting: 100}}',
+                type: i,
+                createdBy: {
+                    connect: { id: user.id },
+                },
+            }
+            });
         const escritaAutomatica = await prisma.exercise.upsert({
             where: { id: i + 60 },
             update: {},

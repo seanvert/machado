@@ -18,7 +18,7 @@ const ExerciseCard = (props: Exercise) => {
   const { id, name, contents } = props;
   return (
     <Link href={`/exercises/${id}`}>
-      <Card>
+      <Card className="my-3 mx-10">
         <CardHeader>
           <CardTitle>{name}</CardTitle>
           <CardDescription>Card Description</CardDescription>
