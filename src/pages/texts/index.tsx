@@ -19,7 +19,7 @@ const TextCard = (props: Text) => {
 }
 
 export default function Home() {
-  const { data, isLoading } = api.text.getAll.useQuery();
+  const { data, isLoading } = api.text.getAllByUser.useQuery();
   return (
     <PageLayout>
       {isLoading ? <LoadingPage /> :

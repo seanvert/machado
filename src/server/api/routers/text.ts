@@ -50,6 +50,7 @@ export const textRouter = createTRPCRouter({
     });
   }),
   getAllByUser: protectedProcedure.query(({ ctx }) => {
+    console.log(ctx.session.user.id)
     return ctx.db.text.findMany({
       orderBy: { createdAt: "desc" },
       where: { createdBy: { id: ctx.session.user.id } },
