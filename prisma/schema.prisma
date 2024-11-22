@@ -24,6 +24,11 @@ model Author {
     quotes Quote[]
 }
 
+model Word {
+    id Int @id @default(autoincrement())
+    word String
+}
+
 model Work {
     id        Int      @id @default(autoincrement())
     name String
